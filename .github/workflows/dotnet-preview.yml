@@ -10,7 +10,7 @@ env:
   DIRECTORY: src
   CONFIGURATION: Debug
   HOST_SOLUTION_NAME: TaskManagement.Service.Auth.Host
-  TAG_SOLUTION_NAME: taskmanagement-service-auth
+  DOCKER_REPOSITORY: taskmanagement-service-auth
   DOCKER_NAMESPACE: wingunt
 
 jobs:
@@ -46,12 +46,6 @@ jobs:
       run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} docker.io
     - name: Build docker repo
       working-directory: ${{ env.DIRECTORY }}/${{ env.HOST_SOLUTION_NAME }}
-      run: docker build docker -t ${{ env.DOCKER_NAMESPACE }}/${{ env.TAG_SOLUTION_NAME }}:latest
+      run: docker build docker -t ${{ env.DOCKER_NAMESPACE }}/${{ env.DOCKER_REPOSITORY }}:dev-$GITHUB_RUN_NUMBER
     - name: Push to Docker Hub
-      run: docker push ${{ env.DOCKER_NAMESPACE }}/${{ env.TAG_SOLUTION_NAME }}:latest
-      
-    - name: Log in to Docker Hub
-      uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+      run: docker push ${{ env.DOCKER_NAMESPACE }}/${{ env.DOCKER_REPOSITORY }}:dev-$GITHUB_RUN_NUMBER
