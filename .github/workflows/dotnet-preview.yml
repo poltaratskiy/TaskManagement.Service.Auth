@@ -9,6 +9,8 @@ on:
 env:
   DIRECTORY: src
   CONFIGURATION: Debug
+  TAG_SOLUTION_NAME: taskmanagement-service-host
+  DOCKER_NAMESPACE: wingunt
 
 jobs:
   build:
@@ -21,9 +23,6 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
-        source-url: https://nuget.pkg.github.com/poltaratskiy/index.json
-      env:
-        NUGET_AUTH_TOKEN: ${{ secrets.NUGET_WRITE_KEY }}
     - name: Restore dependencies
       working-directory: ${{ env.DIRECTORY }}
       run: dotnet restore
@@ -41,6 +40,11 @@ jobs:
     steps:
     - name: Check out the repo
       uses: actions/checkout@v2
+
+    - name: Build docker repo
+      run: docker build TaskManagement.Service.Host\docker -t ${{ env.DOCKER_NAMESPACE }}/${{ env.TAG_SOLUTION_NAME }}:latest
+    - name: Push to Docker Hub
+      run: docker push ${{ env.DOCKER_NAMESPACE }}/${{ env.TAG_SOLUTION_NAME }}
       
     - name: Log in to Docker Hub
       uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
