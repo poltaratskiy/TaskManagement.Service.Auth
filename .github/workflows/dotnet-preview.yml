@@ -42,13 +42,8 @@ jobs:
     - name: Check out the repo
       uses: actions/checkout@v2
 
-    - name: Directory
-      working-directory: ${{ env.DIRECTORY }}/${{ env.HOST_SOLUTION_NAME }}
-      run: pwd
-    - name: Content
-      working-directory: ${{ env.DIRECTORY }}/${{ env.HOST_SOLUTION_NAME }}
-      run: ls
-
+    - name: Docker login
+      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} docker.io
     - name: Build docker repo
       working-directory: ${{ env.DIRECTORY }}/${{ env.HOST_SOLUTION_NAME }}
       run: docker build docker -t ${{ env.DOCKER_NAMESPACE }}/${{ env.TAG_SOLUTION_NAME }}:latest
