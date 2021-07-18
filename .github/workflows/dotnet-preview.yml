@@ -43,7 +43,7 @@ jobs:
 
     - name: Build docker repo
       working-directory: ${{ env.DIRECTORY }}\TaskManagement.Service.Auth.Host
-      run: docker build -t ${{ env.DOCKER_NAMESPACE }}/${{ env.TAG_SOLUTION_NAME }}:latest
+      run: docker build docker -t ${{ env.DOCKER_NAMESPACE }}/${{ env.TAG_SOLUTION_NAME }}:latest
     - name: Push to Docker Hub
       run: docker push ${{ env.DOCKER_NAMESPACE }}/${{ env.TAG_SOLUTION_NAME }}
       
