@@ -43,10 +43,10 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Directory
-      working-directory: ${{ env.DIRECTORY }}\${{ env.HOST_SOLUTION_NAME }}
+      working-directory: ${{ env.DIRECTORY }}/${{ env.HOST_SOLUTION_NAME }}
       run: pwd
     - name: Content
-      working-directory: ${{ env.DIRECTORY }}\${{ env.HOST_SOLUTION_NAME }}
+      working-directory: ${{ env.DIRECTORY }}/${{ env.HOST_SOLUTION_NAME }}
       run: ls
 
     - name: Build docker repo
