@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31424.327
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagement.Service.Auth.Host", "TaskManagement.Service.Auth.Host\TaskManagement.Service.Auth.Host.csproj", "{729E39B0-4A63-4A37-8FD4-CC758C4663D2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DE6249E8-802B-408B-8481-262BB1F3C3E4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{C0D9CCF2-DA2E-4C1E-9D72-1B9C37778C8B}"
+	ProjectSection(SolutionItems) = preProject
+		..\.github\workflows\codeql-analysis.yml = ..\.github\workflows\codeql-analysis.yml
+		..\.github\workflows\dotnet-preview.yml = ..\.github\workflows\dotnet-preview.yml
+		..\.github\workflows\dotnet-release.yml = ..\.github\workflows\dotnet-release.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{729E39B0-4A63-4A37-8FD4-CC758C4663D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{729E39B0-4A63-4A37-8FD4-CC758C4663D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{729E39B0-4A63-4A37-8FD4-CC758C4663D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{729E39B0-4A63-4A37-8FD4-CC758C4663D2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C0D9CCF2-DA2E-4C1E-9D72-1B9C37778C8B} = {DE6249E8-802B-408B-8481-262BB1F3C3E4}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1509361F-0D26-469B-B82E-AB95DDBF2F4E}
+	EndGlobalSection
+EndGlobal
