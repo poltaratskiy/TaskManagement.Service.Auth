@@ -1,6 +1,6 @@
-src/TaskManagement.Lib.Authorization.Tests/obj/
+src/TaskManagement.Service/Auth.Tests/obj/
 *.suo
-src/TaskManagement.Lib.Authorization/obj/
-src/TaskManagement.Lib.Authorization.Tests/bin/
-src/TaskManagement.Lib.Authorization/bin/
+src/TaskManagement.Service/Auth.Host/obj/
+src/TaskManagement.Service/Auth.Tests/bin/
+src/TaskManagement.Service/Auth.Host/bin/
 src/.vs/
