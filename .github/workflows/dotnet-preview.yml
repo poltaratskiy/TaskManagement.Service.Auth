@@ -10,7 +10,7 @@ env:
   DIRECTORY: src
   CONFIGURATION: Debug
   HOST_SOLUTION_NAME: TaskManagement.Service.Auth.Host
-  TAG_SOLUTION_NAME: taskmanagement-service-host
+  TAG_SOLUTION_NAME: taskmanagement-service-auth
   DOCKER_NAMESPACE: wingunt
 
 jobs:
