@@ -1,4 +1,4 @@
-name: .NET Service release
+name: .NET Service preview
 
 on:
   push:
@@ -9,10 +9,13 @@ on:
 env:
   DIRECTORY: src
   CONFIGURATION: Release
+  HOST_SOLUTION_NAME: TaskManagement.Service.Auth.Host
+  DOCKER_REPOSITORY: taskmanagement-service-auth
+  DOCKER_NAMESPACE: wingunt
 
 jobs:
   build:
-
+    name: Build .Net
     runs-on: ubuntu-latest
 
     steps:
@@ -21,9 +24,6 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
-        source-url: https://nuget.pkg.github.com/poltaratskiy/index.json
-      env:
-        NUGET_AUTH_TOKEN: ${{ secrets.NUGET_WRITE_KEY }}
     - name: Restore dependencies
       working-directory: ${{ env.DIRECTORY }}
       run: dotnet restore
@@ -32,10 +32,20 @@ jobs:
       run: dotnet build --no-restore --configuration ${{ env.CONFIGURATION }}
     - name: Test
       working-directory: ${{ env.DIRECTORY }}
-      run: dotnet test --no-build --verbosity normal
-    - name: Create package
-      working-directory: ${{ env.DIRECTORY }}
-      run: dotnet pack --no-build --configuration ${{ env.CONFIGURATION }} #TaskManagement.Lib.Authorization
-    - name: Publish Nuget Package
-      working-directory: ${{ env.DIRECTORY }}
-      run: dotnet nuget push TaskManagement.Lib.Authorization/bin/${{ env.CONFIGURATION }}/*.nupkg
+      run: dotnet test --verbosity normal
+
+  docker:
+    name: Push Docker image to Docker Hub 
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out the repo
+      uses: actions/checkout@v2
+
+    - name: Docker login
+      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} docker.io
+    - name: Build docker repo
+      working-directory: ${{ env.DIRECTORY }}/${{ env.HOST_SOLUTION_NAME }}
+      run: docker build docker -t ${{ env.DOCKER_NAMESPACE }}/${{ env.DOCKER_REPOSITORY }}:latest
+    - name: Push to Docker Hub
+      run: docker push ${{ env.DOCKER_NAMESPACE }}/${{ env.DOCKER_REPOSITORY }}:latest
