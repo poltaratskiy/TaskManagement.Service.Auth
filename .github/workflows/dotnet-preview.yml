@@ -41,6 +41,11 @@ jobs:
     - name: Check out the repo
       uses: actions/checkout@v2
 
+    - name: Directory
+      run: pwd
+    - name: Content
+      run: ls
+
     - name: Build docker repo
       working-directory: ${{ env.DIRECTORY }}
       run: docker build TaskManagement.Service.Auth -t ${{ env.DOCKER_NAMESPACE }}/${{ env.TAG_SOLUTION_NAME }}:latest
