@@ -42,8 +42,10 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Directory
+      working-directory: ${{ env.DIRECTORY }}
       run: pwd
     - name: Content
+      working-directory: ${{ env.DIRECTORY }}
       run: ls
 
     - name: Build docker repo
