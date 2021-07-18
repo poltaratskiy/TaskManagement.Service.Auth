@@ -9,6 +9,7 @@ on:
 env:
   DIRECTORY: src
   CONFIGURATION: Debug
+  HOST_SOLUTION_NAME: TaskManagement.Service.Auth.Host
   TAG_SOLUTION_NAME: taskmanagement-service-host
   DOCKER_NAMESPACE: wingunt
 
@@ -42,10 +43,10 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Directory
-      working-directory: ${{ env.DIRECTORY }}
+      working-directory: ${{ env.DIRECTORY }}\${{ env.HOST_SOLUTION_NAME }}
       run: pwd
     - name: Content
-      working-directory: ${{ env.DIRECTORY }}
+      working-directory: ${{ env.DIRECTORY }}\${{ env.HOST_SOLUTION_NAME }}
       run: ls
 
     - name: Build docker repo
