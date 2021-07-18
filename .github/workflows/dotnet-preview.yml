@@ -50,8 +50,8 @@ jobs:
       run: ls
 
     - name: Build docker repo
-      working-directory: ${{ env.DIRECTORY }}
-      run: docker build TaskManagement.Service.Auth -t ${{ env.DOCKER_NAMESPACE }}/${{ env.TAG_SOLUTION_NAME }}:latest
+      working-directory: ${{ env.DIRECTORY }}/${{ env.HOST_SOLUTION_NAME }}
+      run: docker build docker -t ${{ env.DOCKER_NAMESPACE }}/${{ env.TAG_SOLUTION_NAME }}:latest
     - name: Push to Docker Hub
       run: docker push ${{ env.DOCKER_NAMESPACE }}/${{ env.TAG_SOLUTION_NAME }}
       
